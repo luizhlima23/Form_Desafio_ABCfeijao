@@ -25,7 +25,7 @@
                 <br><br>
                 <input type="password" name="senha" id="senha" placeholder="Senha"  class="text">
                 <br><br>
-                
+
                 <button type="submit" name="submit" class="btn_pr" id="submit" >Entrar</button>
                 <button id="btn_cadastro" type="button" name="btn_cadastro" class="btn_sc">Cadastre-se</button>
               
