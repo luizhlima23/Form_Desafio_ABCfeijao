@@ -1,8 +1,22 @@
 <?php
 
 session_start();
+$email = $_SESSION['email'];
 include_once('config.php');
 
+$sql = "SELECT nome, telefone FROM usuarios WHERE email = '$email'";
+$getnome = mysqli_query($conexao, $sql);
+// Verifique se a consulta retornou resultados
+if (mysqli_num_rows($getnome) > 0) {
+  // Recupere o nome do usuário
+  $row = mysqli_fetch_assoc($getnome);
+  $nome_usuario = $row['nome'];
+  $telefone = $row['telefone'];
+
+  // Atualize o campo do formulário com o valor do nome do usuário
+  // Supondo que o campo do formulário tenha o nome 'nome_usuario'
+  echo '<script>document.getElementById("nome_usuario").value = "' . $nome_usuario . '";</script>';
+}
 
 if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true)) {
 
@@ -11,8 +25,70 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
   header('Location: login.php');
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+  $safra = $_POST['safra'];
+  $cpf_prod = $_POST['cpf_prod'];
+  $cpf_cons = $_POST['cpf_cons'];
+  $n_propriedade = $_POST['n_propriedade'];
+  $cidade = $_POST['cidade'];
+  $estado = $_POST['estado'];
+  $tm_propriedade = $_POST['tm_propriedade'];
+  $area_cult = $_POST['area_cult'];
+  $n_gleba = $_POST['n_gleba'];
+  $cultivar = $_POST['cultivar'];
+  $data_plantio = $_POST['data_plantio'];
+  $sis_plantio = $_POST['sis_plantio'];
+  $mod_plantio = $_POST['mod_plantio'];
+  $cultura_ant = $_POST['cultura_ant'];
+  $temp_exp = $_POST['temp_exp'];
 
 
+  $sqlenvio = "INSERT INTO inscricoes(safra,nome,email,telefone,cpf_prod,cpf_cons,n_propriedade,cidade,estado,tm_propriedade,area_cult,n_gleba,cultivar,data_plantio,sis_plantio,mod_plantio,cultura_ant,temp_exp) 
+  VALUES('$safra','$nome_usuario','$email','$telefone','$cpf_prod','$cpf_cons','$n_propriedade','$cidade','$estado','$tm_propriedade','$area_cult','$n_gleba','$cultivar','$data_plantio','$sis_plantio','$mod_plantio','$cultura_ant','$temp_exp')";
+  $envio = mysqli_query($conexao, $sqlenvio);
+print_r($nome_usuario);
+echo "<br>";
+print_r($email);
+echo "<br>";
+print_r($telefone);
+echo "<br>";
+print_r($safra);
+echo "<br>";
+print_r($_POST['cpf_prod']);
+echo "<br>";
+print_r($_POST['cpf_cons']);
+echo "<br>";
+print_r($_POST['n_propriedade']);
+echo "<br>";
+print_r($_POST['cidade']);
+echo "<br>";
+print_r($_POST['estado']);
+echo "<br>";
+print_r($_POST['tm_propriedade']);
+echo "<br>";
+print_r($_POST['area_cult']);
+echo "<br>";
+print_r($_POST['n_gleba']);
+echo "<br>";
+print_r($_POST['cultivar']);
+echo "<br>";
+print_r($_POST['data_plantio']);
+echo "<br>";
+print_r($_POST['sis_plantio']);
+echo "<br>";
+print_r($_POST['mod_plantio']);
+echo "<br>";
+print_r($_POST['cultura_ant']);
+echo "<br>";
+print_r($_POST['temp_exp']);
+echo "<br>";
+
+}
+
+
+// $result = mysqli_query($conexao, "INSERT INTO usuarios(nome,email,telefone,senha) VALUES('$nome','$email','$telefone','$senha')");
+// header('Location: login.php');
 ?>
 
 
@@ -34,10 +110,10 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
 </head>
 
 <body>
-<svg class="bg_color">
-		<rect id="bg_color" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
-		</rect>
-	</svg>
+  <svg class="bg_color">
+    <rect id="bg_color" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
+    </rect>
+  </svg>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Inscrição - Desafio máxima produtividade</a>
@@ -51,17 +127,21 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
   </nav>
 
 
-  <form id="regForm" action="">
+  <form id="regForm" name="regForm" action="Inscricao.php" method="POST">
 
 
     <!-- One "tab" for each step in the form: -->
     <div class="tab">
       <h2>1 - Dados iniciais:</h2>
-      <p><input placeholder="Produtor - CPF/CNPJ ou email" oninput="this.className = ''" name="prod_cpf"></p>
+      <p><select id="safra" name="safra" onchange="validateForm()" required>
+              <option value="">Escolha a safra da inscrição</option>
+              <option value="safra - 2023">2023</option>
+            </select></p>
+      <p><input placeholder="Produtor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_prod" id="cpf_prod"></p>
       <p><input type="checkbox" oninput="this.className = ''" id="comfirm01" name="comfirm01" value="true" style="width: auto;"><label for="comfirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
       </p>
-      <p><input placeholder="Consultor - CPF/CNPJ ou email" oninput="this.className = ''" name="consult_cpf"></p>
-      <p><input type="checkbox" oninput="this.className = ''" id="comfirm01" name="comfirm01" value="true" style="width: auto;"><label for="comfirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
+      <p><input placeholder="Consultor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_cons" id="cpf_cons"></p>
+      <p><input type="checkbox" oninput="this.className = ''" id="comfirm02" name="comfirm02" value="true" style="width: auto;"><label for="comfirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
       </p>
     </div>
 
@@ -73,20 +153,20 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
         </tr>
       </table>
       <p>
-        <input style="width: 50%;" placeholder="Nome da propriedade" oninput="this.className = ''">
-        <input style="width: 35%;" placeholder="Cidade" oninput="this.className = ''">
+        <input style="width: 50%;" id="n_propriedade" name="n_propriedade" placeholder="Nome da propriedade" oninput="this.className = ''">
+        <input style="width: 35%;" id="cidade" name="cidade" placeholder="Cidade" oninput="this.className = ''">
       </p>
       <p>
       <table>
         <tr>
-          <td><label for="estados">Estado</label><br></td>
-          <td><label for="tamanho_pr">Tamanho da propriedade</label></td>
-          <td><label for="area_ctv">Área cultivada com feijão irrigado</label></td>
+          <td><label for="estado">Estado</label><br></td>
+          <td><label for="tm_propriedade">Tamanho da propriedade</label></td>
+          <td><label for="area_cult">Área cultivada com feijão irrigado</label></td>
         </tr>
         <tr>
           <td>
 
-            <select id="estados" onchange="validateForm()" required>
+            <select id="estado" name="estado" onchange="validateForm()" required>
               <option value="">UF</option>
               <option value="GO">GO</option>
               <option value="MG">MG</option>
@@ -96,7 +176,7 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
               <option value="PR">PR</option>
             </select>
           </td>
-          <td><select id="tamanho_pr" onchange="validateForm()" required>
+          <td><select id="tm_propriedade" name="tm_propriedade" onchange="validateForm()" required>
               <option value="">escolha um tamanho em (há)</option>
               <option value="100">100 há</option>
               <option value="250">250 há</option>
@@ -105,51 +185,51 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
               <option value="2.500">2.500 há</option>
               <option value="5.000">5.000 há</option>
               <option value="10.000">10.000 há</option>
-              <option value="> 10.000">+ de 10.000 há</option>
+              <option value=">10.000">+ de 10.000 há</option>
             </select></td>
-          <td><select id="area_ctv" onchange="validateForm()" required>
+          <td><select id="area_cult" name="area_cult" onchange="validateForm()" required>
               <option value="">escolha a area</option>
               <option value="50">50 há</option>
               <option value="100">100 há</option>
               <option value="150">150 há</option>
               <option value="250">250 há</option>
               <option value="500">500 há</option>
-              <option value="1000">1.000 há</option>
-              <option value="2500">2.500 há</option>
-              <option value="5000">5.000 há</option>
+              <option value="1.000">1.000 há</option>
+              <option value="2.500">2.500 há</option>
+              <option value="5.000">5.000 há</option>
             </select></td>
         </tr>
 
       </table>
 
       </p>
-      <p><input placeholder="Nome da Gleba/Talhão/Pivô" oninput="this.className = ''"></p>
+      <p><input id="n_gleba" name="n_gleba" placeholder="Nome da Gleba/Talhão/Pivô" oninput="this.className = ''"></p>
     </div>
 
     <div class="tab">3 - Sistema de Produção:
       <p>
-        <input placeholder="Cultivar" oninput="this.className = ''">
+        <input id="cultivar" name="cultivar" placeholder="Cultivar" oninput="this.className = ''">
       </p>
-      <p><label for="data_pl">data do plantio</label>
-        <input id="data_pl" type="date" placeholder="" oninput="this.className = ''">
+      <p><label for="data_plantio">data do plantio</label>
+        <input id="data_plantio" name="data_plantio" type="date" placeholder="" oninput="this.className = ''">
       </p>
       <p>
       <table>
         <tr>
-          <td><label for="">Sistema de Plantio</label><br></td>
-          <td><label for="tamanho_pr">Modelo de produção</label></td>
+          <td><label for="sis_plantio">Sistema de Plantio</label><br></td>
+          <td><label for="mod_plantio">Modelo de produção</label></td>
         </tr>
         <tr>
-          <td><select id="sis_plantio">
+          <td><select id="sis_plantio" name="sis_plantio">
               <option value="">escolha o sistema</option>
-              <option value="">Semeado com botinha</option>
-              <option value="">Semeado com disco</option>
+              <option value="Botinha">Semeado com botinha</option>
+              <option value="Disco">Semeado com disco</option>
             </select>
           </td>
-          <td><select id="mod_plantio">
+          <td><select id="mod_plantio" name="mod_plantio">
               <option value="">escolha o modelo de plantio</option>
-              <option value="">Direto</option>
-              <option value="">Convencional</option>
+              <option value="Direto">Direto</option>
+              <option value="Convencional">Convencional</option>
             </select></td>
         </tr>
         <tr>
@@ -157,25 +237,25 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
           <td><label for="temp_exp">Modelo de produção</label></td>
         </tr>
         <tr>
-          <td><select id="cultura_ant">
+          <td><select id="cultura_ant" name="cultura_ant">
               <option value="">escolha a cultura</option>
-              <option value="">Soja</option>
-              <option value="">Milho</option>
-              <option value="">Milho semente</option>
-              <option value="">Milheto</option>
-              <option value="">Mix de plantas de cobertura</option>
-              <option value="">Arroz</option>
-              <option value="">Outra</option>
+              <option value="Soja">Soja</option>
+              <option value="Milho">Milho</option>
+              <option value="Milho semente">Milho semente</option>
+              <option value="Milheto">Milheto</option>
+              <option value="Mix de plantas de cobertura">Mix de plantas de cobertura</option>
+              <option value="Arroz">Arroz</option>
+              <option value="Outra">Outra</option>
             </select>
           </td>
-          <td><select id="temp_exp">
+          <td><select id="temp_exp" name="temp_exp">
               <option value="">escolha o tempo de exploração em anos</option>
-              <option value="">5 anos</option>
-              <option value="">10 anos</option>
-              <option value="">15 anos</option>
-              <option value="">20 anos</option>
-              <option value="">25 anos</option>
-              <option value="">30 anos</option>
+              <option value="5 anos">5 anos</option>
+              <option value="10 anos">10 anos</option>
+              <option value="15 anos">15 anos</option>
+              <option value="20 anos">20 anos</option>
+              <option value="25 anos">25 anos</option>
+              <option value="30 anos">30 anos</option>
             </select></td>
         </tr>
 
@@ -191,7 +271,7 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
     <div style="overflow:auto;">
       <div style="float:right;">
         <button type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
-        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        <button type="button" id="nextBtn" name="nextBtn" onclick="nextPrev(1)">Next</button>
       </div>
     </div>
 
@@ -224,11 +304,52 @@ if ((!isset($_SESSION['email']) == true) and (!isset($_SESSION['email']) == true
       }
       if (n == (x.length - 1)) {
         document.getElementById("nextBtn").innerHTML = "Enviar";
+        submitForm();
+
       } else {
         document.getElementById("nextBtn").innerHTML = "Próximo";
+
       }
       //... and run a function that will display the correct step indicator:
       fixStepIndicator(n)
+    }
+
+    function submitForm() {
+      // Cria um objeto com os dados do formulário
+      var formData = {
+        safra: document.getElementById9("safra").value,
+        cpf_prod: document.getElementById("cpf_prod").value,
+        cpf_cons: document.getElementById("cpf_cons").value,
+        n_propriedade: document.getElementById("n_propriedade").value,
+        cidade: document.getElementById("cidade").value,
+        estado: document.getElementById("estado").value,
+        tm_propriedade: document.getElementById("tm_propriedade").value,
+        area_cult: document.getElementById("area_cult").value,
+        n_gleba: document.getElementById("n_gleba").value,
+        cultivar: document.getElementById("cultivar").value,
+        data_plantio: document.getElementById("data_plantio").value,
+        sis_plantio: document.getElementById("sis_plantio").value,
+        mod_plantio: document.getElementById("mod_plantio").value,
+        cultura_ant: document.getElementById("cultura_ant").value,
+        temp_exp: document.getElementById("temp_exp").value
+      };
+
+      // Faz uma requisição POST para enviar os dados do formulário ao servidor
+      fetch("seu_endpoint", {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(function(response) {
+          // Lida com a resposta do servidor
+          // ...
+        })
+        .catch(function(error) {
+          // Lida com erros durante a requisição
+          // ...
+        });
     }
 
     function nextPrev(n) {
