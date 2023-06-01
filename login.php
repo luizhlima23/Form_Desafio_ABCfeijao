@@ -10,24 +10,31 @@
     
 </head>
 <body>
+
     <svg class="bg_color">
-		<rect id="bg_color" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
+		<rect id="bg_color" rx="0" ry="0" x="0" y="0"  width="100%" height="100%">
 		</rect>
 	</svg>
-    <div class="img">
-        <div class="titulo">
-            <h1>DESAFIO MÁXIMA PRODUTIVIDADE<br>DO FEIJÃO IRRIGADO</h1>
+    
+    <a href="https://abcfeijao.com.br/">
+        <div class="logo"> <img src="css/img/ABC Feijão - LOGO.png" alt=""></div>
+    </a>
+    <br>
+        <div> 
+            <h1 class="titulo">DESAFIO MÁXIMA PRODUTIVIDADE<br> DO FEIJÃO IRRIGADO</h1>
         </div>
         <div class="box">
-            <h2>ACESSO</h2>
+            <h2>ACESSE</h2>
             <form action="testLogin.php" method="POST">
                 <input type="text" name="email" id="email" placeholder="Email" class="text">
+                
                 <br><br>
                 <input type="password" name="senha" id="senha" placeholder="Senha"  class="text">
                 <br><br>
 
                 <button type="submit" name="submit" class="btn_pr" id="submit" >Entrar</button>
-                <button id="btn_cadastro" type="button" name="btn_cadastro" class="btn_sc">Cadastre-se</button>
+                <br>
+                <button id="btn_cadastro" type="button" name="btn_cadastro" class="btn_sc">Não tem cadastro? <i><u>Clique aqui</u></i>.</button>
               
             </form>
                 

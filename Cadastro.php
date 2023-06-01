@@ -14,7 +14,7 @@
         $senha = $_POST['senha'];
 
         $result= mysqli_query($conexao,"INSERT INTO usuarios(nome,email,telefone,senha) VALUES('$nome','$email','$telefone','$senha')");
-        header('Location: login.php');
+        header('Location: ObrigadoCadastro.php');
     }
 
 ?>
@@ -34,33 +34,45 @@
 		<rect id="bg_color" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
 		</rect>
 	</svg>
+
+    <a href="https://abcfeijao.com.br/">
+        <div class="logo"> <img src="css/img/ABC Feijão - LOGO.png" alt=""></div>
+    </a>
     
-    <div class="box">
+    <br>
+        <div> 
+            <h1 class="titulo">DESAFIO MÁXIMA PRODUTIVIDADE<br> DO FEIJÃO IRRIGADO</h1>
+        </div>
+    
+    <div class="box" id="box_cad">
+        <h2>CADASTRE-SE</h2>
         <form action="Cadastro.php" method="POST">
-            <fieldset>
-                <legend><b>Cadastrar</b></legend>
+           
                 <br>
-                <div class="inputbox">
-                    <input type="text" name="nome" id="nome" placeholder="Nome Completo"  required>   
+                <div class="inputbox" style="width: 100%;" >
+                    <input  type="text" name="nome" id="nome" placeholder="Nome Completo"  required>   
                 </div>
                 <br><br>
-                <div class="inputbox">
+                <div class="inputbox" style="width: 100%;">
                     <input type="text" name="email" id="email" placeholder="Email"  required>
                 </div>
                 <br><br>
-                <div class="inputbox">
-                    <input type="phone" name="telefone" id="telefone" placeholder="Telefone" required>
+                <div class="inputbox" style="width: 50%;" >
+                    <input style="width: 90%;" type="phone" name="telefone" id="telefone" placeholder="Telefone" required>
+                </div>
+                <div class="inputbox" style="width: 30%;">
+                    <input  type="password" name="senha" id="senha" placeholder="Digite uma senha"  required>
                 </div>
                 <br><br>
-                <div class="inputbox">
-                    <input type="password" name="senha" id="senha" placeholder="Digite uma senha"  required>
+                <div class="button-row">
+                    <button type="submit" name="submit" class="btn_pr" id="submit" >Cadastrar</button>
+                    <p>Já tem cadastro?
+                    <a href="login.php">Acesse aqui</a>
+                    </p>
                 </div>
-                <br><br>
-                
-                <button type="submit" name="submit" class="btn_pr" id="submit" >Cadastrar</button>
-                <button name="btn_entra" class="btn_sc"onclick="location.href='login.php'" >Entrar</button>
                
-            </fieldset>
+               
+            
         </form>
     </div>
 </body>

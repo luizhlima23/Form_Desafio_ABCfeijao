@@ -8,15 +8,15 @@ h1{
 }
 h2{
     font-family:  font-family:Arial, Helvetica, sans-serif;
-    color: rgba(12,40,116,1);
+    color: #0C2874;
     font-size:39px;
     white-space: nowrap;
-	text-align: center;
+	text-align: left;
 	font-weight: bold;
 }
 .box{
 
-    border: 1px solid white;
+    border: 2px solid white;
     background-color:rgba(255,255,255,0.5);
     backdrop-filter:blur(6.876px);   
     position:absolute;
@@ -30,6 +30,27 @@ h2{
     border-radius:15px;
     
 }
+img{
+    width:150px;
+    margin: 10px;
+    display: inline-block;
+}
+.logo{
+    padding: 15px;
+    position:absolute;
+    top: 76px;
+    left: 74px;
+    width: 150px;
+    height: 65px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 26px;
+    opacity: 1;
+    display: flex; 
+    justify-content: center;
+    
+}
+
 input{
     position:relative;
     padding: 15px;
@@ -40,7 +61,13 @@ input{
     resize: vertical;
     width:100%;
     
+    border: 1px solid #98A6B9;
     
+    
+}
+.inputbox {
+    display: inline-block;
+    margin-right: 20px;
 }
 button{
     border: none;
@@ -49,6 +76,9 @@ button{
         color: white;
         font-size:15px;
         cursor:pointer;
+        margin:5px;
+        font-family:  font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
     }
     
     .btn_pr{
@@ -63,12 +93,27 @@ button{
     }
     .btn_sc{
         background-color: #0c2f81;
-        width:150px;
+        width:600px;
+        box-shadow: 0px 3px 30px #00000050;
     }
     .btn_sc:hover{
         background-color:#10003e;
     }
-   
+    .agradecimento{
+    
+        
+        position:absolute;
+        text-align:center;
+        width:50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding:80px;
+       
+        padding-top:30px;
+        border-radius:15px;
+    }
+    
 
     @media only screen and (max-width: 600px) {
       
@@ -80,5 +125,36 @@ button{
             padding-top:0px;
             padding-bottom:30px;
             padding-left:40px;
+        }
+        .btn_sc{
+            
+            width:260px;
+            
+        }
+        button{
+            font-size:14px;
+        }
+        
+        #txt_agr{
+            font-size:25px;
+        }
+        .agradecimento{
+            width:80%;
+            
+        }
+        .logo{
+            padding: 15px;
+            position:absolute;
+            top: 10px;
+            left: 100px;
+            width: 150px;
+            height: 65px;
+            background: #FFFFFF 0% 0% no-repeat padding-box;
+            border: 1px solid #707070;
+            border-radius: 26px;
+            opacity: 1;
+            display: flex; 
+            justify-content: center;
+            
         }
     }
