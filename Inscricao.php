@@ -137,31 +137,22 @@ header('Location: ObrigadoCadastro.php');
               <option value="safra - 2023">2023</option>
             </select></p>
       <p><input placeholder="Produtor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_prod" id="cpf_prod"></p>
-      <p><input type="checkbox" oninput="this.className = ''" id="comfirm01" name="comfirm01" value="true" style="width: auto;"><label for="comfirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
+      <p><input  type="checkbox" oninput="this.className = ''" id="confirm01" name="confirm01" value="true" style="width: auto;"><label class="label_conf" for="confirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
       </p>
       <p><input  placeholder="Consultor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_cons" id="cpf_cons"></p>
-      <p><input type="checkbox" oninput="this.className = ''" id="comfirm02" name="comfirm02" value="true" style="width: auto;"><label for="comfirm02">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
+      <p><input  type="checkbox" oninput="this.className = ''" id="confirm02" name="confirm02" value="true" style="width: auto;"><label class="label_conf" for="confirm02">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
       </p>
     </div>
 
     <div class="tab">
-      <h2>2 - Dados da Propriedade</h2>
-      <table>
-        <tr>
-          <td>Nome da Propriedade</td>
-        </tr>
-      </table>
+      <h2>2 - DADOS DA PROPRIEDADE:</h2>
+  
       <p>
         <input type="text" style="width: 50%;" id="n_propriedade" name="n_propriedade" placeholder="Nome da propriedade" oninput="this.className = ''">
         <input style="width: 35%;" id="cidade" name="cidade" placeholder="Cidade" oninput="this.className = ''">
       </p>
       <p>
       <table>
-        <tr>
-          <td><label for="estado">Estado</label><br></td>
-          <td><label for="tm_propriedade">Tamanho da propriedade</label></td>
-          <td><label for="area_cult">Área cultivada com feijão irrigado</label></td>
-        </tr>
         <tr>
           <td>
 
@@ -176,7 +167,7 @@ header('Location: ObrigadoCadastro.php');
             </select>
           </td>
           <td><select id="tm_propriedade" name="tm_propriedade" onchange="validateForm()" required>
-              <option value="">escolha um tamanho em (há)</option>
+              <option value="">Tamanho da propriedade em (há)</option>
               <option value="100">100 há</option>
               <option value="250">250 há</option>
               <option value="500">500 há</option>
@@ -187,7 +178,7 @@ header('Location: ObrigadoCadastro.php');
               <option value=">10.000">+ de 10.000 há</option>
             </select></td>
           <td><select id="area_cult" name="area_cult" onchange="validateForm()" required>
-              <option value="">escolha a area</option>
+              <option value="">Área cultivada com feijão irrigado</option>
               <option value="50">50 há</option>
               <option value="100">100 há</option>
               <option value="150">150 há</option>
@@ -205,7 +196,8 @@ header('Location: ObrigadoCadastro.php');
       <p><input id="n_gleba" name="n_gleba" placeholder="Nome da Gleba/Talhão/Pivô" oninput="this.className = ''"></p>
     </div>
 
-    <div class="tab">3 - Sistema de Produção:
+    <div class="tab">
+      <h2>3 - SISTEMA DE PRODUÇÃO:</h2>
       <p>
         <input id="cultivar" name="cultivar" placeholder="Cultivar" oninput="this.className = ''">
       </p>
@@ -269,8 +261,8 @@ header('Location: ObrigadoCadastro.php');
 
     <div style="overflow:auto;">
       <div style="float:right;">
-        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
-        <button type="button" id="nextBtn" name="nextBtn" onclick="nextPrev(1)">Next</button>
+        <button type="button" class="btn_pr" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
+        <button type="button" class="btn_sc" id="nextBtn" name="nextBtn" onclick="nextPrev(1)">Next</button>
       </div>
     </div>
 
