@@ -83,12 +83,12 @@ print_r($_POST['cultura_ant']);
 echo "<br>";
 print_r($_POST['temp_exp']);
 echo "<br>";
-
+header('Location: ObrigadoCadastro.php');
 }
 
 
 // $result = mysqli_query($conexao, "INSERT INTO usuarios(nome,email,telefone,senha) VALUES('$nome','$email','$telefone','$senha')");
-// header('Location: login.php');
+
 ?>
 
 
@@ -103,18 +103,15 @@ echo "<br>";
   <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <title>Desafio Maxima Produtividade</title>
 
 </head>
 
 <body>
-  <svg class="bg_color">
-    <rect id="bg_color" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
-    </rect>
-  </svg>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+  
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Inscrição - Desafio máxima produtividade</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,15 +121,17 @@ echo "<br>";
     <div class="d-flex">
       <a href="logout.php" class="btn btn-danger me-5">Sair</a>
     </div>
-  </nav>
-
+  </nav> -->
+  <a href="https://abcfeijao.com.br/" class="logo">
+         <img src="css/img/ABC Feijão - LOGO.png" alt="">
+    </a>
 
   <form id="regForm" name="regForm" action="Inscricao.php" method="POST">
 
 
     <!-- One "tab" for each step in the form: -->
     <div class="tab">
-      <h2>1 - Dados iniciais:</h2>
+      <h2><b>1 - DADOS INICIAIS:</b></h2>
       <p><select id="safra" name="safra" onchange="validateForm()" required>
               <option value="">Escolha a safra da inscrição</option>
               <option value="safra - 2023">2023</option>
@@ -140,8 +139,8 @@ echo "<br>";
       <p><input placeholder="Produtor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_prod" id="cpf_prod"></p>
       <p><input type="checkbox" oninput="this.className = ''" id="comfirm01" name="comfirm01" value="true" style="width: auto;"><label for="comfirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
       </p>
-      <p><input placeholder="Consultor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_cons" id="cpf_cons"></p>
-      <p><input type="checkbox" oninput="this.className = ''" id="comfirm02" name="comfirm02" value="true" style="width: auto;"><label for="comfirm01">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
+      <p><input  placeholder="Consultor - CPF/CNPJ ou email" oninput="this.className = ''" name="cpf_cons" id="cpf_cons"></p>
+      <p><input type="checkbox" oninput="this.className = ''" id="comfirm02" name="comfirm02" value="true" style="width: auto;"><label for="comfirm02">Declaro que o proprietario deste CPF/CNPJ ou email está ciennte que será relacionado a esta inscrição.</label>
       </p>
     </div>
 
@@ -153,7 +152,7 @@ echo "<br>";
         </tr>
       </table>
       <p>
-        <input style="width: 50%;" id="n_propriedade" name="n_propriedade" placeholder="Nome da propriedade" oninput="this.className = ''">
+        <input type="text" style="width: 50%;" id="n_propriedade" name="n_propriedade" placeholder="Nome da propriedade" oninput="this.className = ''">
         <input style="width: 35%;" id="cidade" name="cidade" placeholder="Cidade" oninput="this.className = ''">
       </p>
       <p>

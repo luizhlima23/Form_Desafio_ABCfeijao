@@ -3,27 +3,52 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("img/bg1.jpg");
-  background-size: cover; /* Adicione esta linha */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: white;
+  background: #F8F8F8 0% 0% no-repeat padding-box;
   
 }
-
-
+ 
+  h2{
+    text-align: left;
+    font-family:  font-family:Arial, Helvetica, sans-serif;
+    font-size: 40px ;
+    letter-spacing: 0px;
+    color: #0C2874;
+  }
 
 .tab {
   display: none;
 }
 
 input.invalid {
-  border: 2px solid red;
+  border: 1px solid red;
 }
-input[type="checkbox"].invalid {
-  outline: 2px solid red;
+input[type="checkbox"].invalid + label::before {
+  border-color: red; /* Cor da borda quando a checkbox é inválida */
+  background-color: white; /* Cor de fundo quando a checkbox é inválida */
 }
 
+
+img{
+  
+  width: 188px;
+  height: 74px;
+  opacity: 1;
+}
+
+.logo{
+  padding: 15px;
+  position:absolute;
+  top: 76px;
+  left: 74px;
+  width: 150px;
+  height: 65px;
+ 
+  border-radius: 26px;
+  opacity: 1;
+  display: flex; 
+  justify-content: center;
+  
+}
 
 .step {
   width: 20px;
@@ -71,12 +96,12 @@ button#nextBtn {
 }
 
 #regForm {
-  border: 1px solid white;
-  background-color:rgba(255,255,255,0.5);
-  backdrop-filter:blur(6.876px);   
+  border: 2px solid #98A6B9;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 15px 15px 25px #00000029;
   position:absolute;
-  width: 800px;
-  height:500px;
+  width: 40%;
+  height:auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
@@ -86,24 +111,59 @@ button#nextBtn {
   border-radius:15px;
   } 
   
+  label{
+    color: #0C2874;
+    font-size:18px;
+    position: relative;
+    padding-left: 30px; /* Espaçamento para a checkbox personalizada */
+    cursor: pointer;
+    
+  }
+  label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #98A6B9; /* Cor da borda */
+    border-radius: 50%; /* Deixa a checkbox redonda */
+    background-color: white; /* Cor de fundo da checkbox */
+  }
+  input[type="checkbox"]:checked + label::before {
+    background-color: #98A6B9;
+
+  }
   /* Style the input fields */
   input, select, date {
+    
+    color:#98A6B9;
+
     position:relative;
     padding: 15px;
     border: none;
     outline: none;
-    border-radius:5px;
+    border-radius:12px;
     font-size: 15px;
     resize: vertical;
     width:100%;
+    
+    border: 1px solid #98A6B9;
   }
+  input::placeholder{
+    color:#98A6B9;
+  }
+  input[type="checkbox"]{
+    display: none;
+  }
+  
   
   /* Mark input boxes that gets an error on validation: */
   input.invalid, {
     background-color: #ffdddd;
   }
   select.invalid{
-    border:solid 2px red;
+    border:solid 1px red;
     
   }
   
@@ -117,35 +177,26 @@ button#nextBtn {
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
+    background-color: #FFFFFF;
+    border: 1px solid #279D3F;
     border-radius: 50%;
     display: inline-block;
-    opacity: 0.5;
+    opacity: 1;
   }
   
   /* Mark the active step: */
   .step.active {
     opacity: 1;
+    background-color: #279D3F;
   }
   
   /* Mark the steps that are finished and valid: */
   .step.finish {
-    background-color: #04AA6D;
+    
+    border: 1px solid #279D3F;
   }
 
-  #bg_color {
-    opacity: 0.4;
-    fill: rgba(0,16,60,1);
-  }
-  .bg_color {
-    position: absolute;
-    overflow: visible;
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-  }
+
 
   @media only screen and (max-width: 600px) {
       
